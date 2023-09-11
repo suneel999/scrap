@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Mobile Scraper</title>
+</head>
+<body>
+    <h1>Flipkart Mobile Scraper</h1>
+    <form method="POST">
+        <label for="search_query">Enter the mobile you want to search:</label>
+        <input type="text" id="search_query" name="search_query" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if data %}
+        <h2>Search Results:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(data['product_names']|length) %}
+                    <tr>
+                        <td>{{ data['product_names'][i] }}</td>
+                        <td>{{ data['product_prices'][i] }}</td>
+                        <td>{{ data['product_descriptions'][i] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
